@@ -31,28 +31,39 @@
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
 
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-white/10 p-4">
-        <div class="container mx-auto flex items-center">
-            <a href="index.html" class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center font-black text-white italic shadow-lg shadow-emerald-500/20">YY</div>
-                <span class="font-black text-xl tracking-tighter text-white uppercase">YY<span class="text-emerald-400">KLATRING</span></span>
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-white/10 p-4 transition-colors duration-300" id="main-nav">
+        <div class="container mx-auto flex justify-between items-center">
+            
+            <a href="index.html" class="relative z-[110] block">
+                <img src="logo-YYklatring kopi.png" alt="YYKLATRING Logo" class="h-12 md:h-16 w-auto transition-transform hover:scale-105">
             </a>
+            
+    
             <div class="hidden md:flex space-x-8 items-center ml-auto text-white">
-                <a href="index.html" class="text-sm font-bold uppercase tracking-widest hover:text-emerald-400 transition">Om oss</a>
-          
+                <a href="index.html#hvem-er-vi" class="text-sm font-bold uppercase tracking-widest hover:text-emerald-400 transition">Om oss</a>
+                
                 <div class="nav-dropdown">
-                    <a href="2_Kurs.html" class="text-sm font-bold uppercase tracking-widest text-emerald-400 transition py-4 inline-block">
+                    <a href="2_Kurs.html" class="text-sm font-bold uppercase tracking-widest text-emerald-400 transition py-4 flex items-center">
                         Kurs ▾
                     </a>
                     <div class="nav-dropdown-content">
-                        <a href="2a_PrøvKlatringUte.html" class="text-emerald-400">Prøve klatring ute</a>
+                        <a href="2a_PrøvKlatringUte.html">Prøve klatring ute</a>
                         <a href="2b_InneTilUtekurs.html">Inne til utekurs</a>
                         <a href="2c_Repetisjonsdag.html">Repetisjonskurs</a>
                     </div>
                 </div>
-
-                <a href="3_Treningsgrupper.html" class="text-sm font-bold uppercase tracking-widest hover:text-emerald-400 transition">Trening</a>
-                <a href="4_Påmelding.html" class="bg-emerald-600 hover:bg-emerald-500 px-6 py-3 rounded-full text-sm font-black uppercase tracking-widest transition shadow-lg text-white">Påmelding</a>
+            
+                <div class="nav-dropdown">
+                    <a href="3_Treningsgrupper.html" class="text-sm font-bold uppercase tracking-widest hover:text-emerald-400 transition py-4 flex items-center">
+                        Treningsgrupper ▾
+                    </a>
+                    <div class="nav-dropdown-content">
+                        <a href="3_Treningsgrupper.html#nivå1">Nivå 1</a>
+                        <a href="3_Treningsgrupper.html#nivå2">Nivå 2</a>
+                    </div>
+                </div>
+            
+                <a href="4_Påmelding.html" class="bg-emerald-600 px-6 py-3 rounded-full text-sm font-black uppercase tracking-widest hover:bg-emerald-500 transition shadow-lg text-white">Påmelding</a>
             </div>
         </div>
     </nav>
