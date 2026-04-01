@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="no" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treningsgruppe Nivå 1 | YYKLATRING</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* --- DROPDOWN-MENY --- */
+        .nav-dropdown { position: relative; display: inline-block; }
+        .nav-dropdown::after {
+            content: ''; position: absolute; top: 100%; left: 0;
+            width: 100%; height: 20px; display: block; z-index: 50;
+        }
+        .nav-dropdown-content {
+            display: none; position: absolute; right: 0; top: calc(100% + 5px); 
+            background-color: #0f172a; min-width: 240px;
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.4); z-index: 1000;
+            border-radius: 15px; padding: 10px 0; border: 1px solid #1e293b;
+        }
+        .nav-dropdown:hover .nav-dropdown-content { display: block; }
+        .nav-dropdown-content a {
+            color: #f8fafc; padding: 14px 20px; text-decoration: none;
+            display: block; font-size: 13px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.2s ease;
+        }
+        .nav-dropdown-content a:hover {
+            background-color: #1e293b; color: #10b981; padding-left: 28px;
+        }     
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-white/10 p-4">
+        <div class="container mx-auto flex items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center font-black text-white italic shadow-lg shadow-emerald-500/20">YY</div>
+                <span class="font-black text-xl tracking-tighter text-white uppercase">YY<span class="text-emerald-400">KLATRING</span></span>
+            </a>
+            <div class="hidden md:flex space-x-8 items-center ml-auto text-white">
+                <a href="index.html" class="text-sm font-bold uppercase tracking-widest hover:text-emerald-400 transition">Om oss</a>
+          
+                <div class="nav-dropdown">
+                    <a href="2_Kurs.html" class="text-sm font-bold uppercase tracking-widest hover:text-emerald-400 transition py-4 inline-block">
+                        Kurs ▾
+                    </a>
+                    <div class="nav-dropdown-content">
+                        <a href="2a_PrøvKlatringUte.html">Prøve klatring ute</a>
+                        <a href="2b_InneTilUtekurs.html">Inne til utekurs</a>
+                        <a href="2c_Repetisjonsdag.html">Repetisjonskurs</a>
+                    </div>
+                </div>
+
+                <a href="3_Treningsgrupper.html" class="text-sm font-bold uppercase tracking-widest text-emerald-400 transition">Trening</a>
+                <a href="4_Påmelding.html" class="bg-emerald-600 hover:bg-emerald-500 px-6 py-3 rounded-full text-sm font-black uppercase tracking-widest transition shadow-lg text-white">Påmelding</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-20">
+        <div class="container mx-auto px-4 max-w-5xl">
+            
+            <a href="3_Treningsgrupper.html" class="inline-flex items-center text-slate-500 font-bold uppercase text-xs tracking-widest hover:text-emerald-600 transition mb-8">
+                <span class="mr-2">←</span> Tilbake til oversikt
+            </a>
+
+            <div class="grid lg:grid-cols-3 gap-10 items-start">
+                
+                <div class="lg:col-span-2 space-y-8">
+                    <div class="bg-white rounded-[40px] shadow-sm border border-slate-200 p-8 md:p-12">
+                        <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tight text-slate-800 mb-6 italic">
+                            Bli trygg på <span class="text-emerald-500">klippen</span>
+                        </h1>
+                        <p class="text-emerald-600 font-black uppercase tracking-widest text-sm mb-8">Nivå 1 – Treningsgruppe</p>
+                        
+                        <div class="prose prose-slate max-w-none text-slate-600 space-y-6 leading-relaxed">
+                            <p class="text-xl font-bold text-slate-800">Har du klatret litt ute, men føler deg ikke helt trygg på rutinene?</p>
+                            <p>
+                                Bli med i en treningsgruppe for uteklatring – en sosial og lærerik arena hvor du utvikler ferdighetene dine sammen med andre klatrere på samme nivå.
+                            </p>
+                            <p>
+                                Vi jobber med grunnleggende klatreteknikk, rutevalg og trygge rutiner ute. Du får personlig veiledning og konkrete verktøy som gjør deg mer komfortabel på topptau og ledklatring. Målet er at du skal bygge selvtillit og gode vaner, slik at du føler deg klar for egne turer.
+                            </p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-8 mt-12">
+                            <div class="bg-slate-50 p-6 rounded-[30px] border border-slate-100">
+                                <h3 class="font-black uppercase text-xs tracking-widest text-emerald-600 mb-4">Hvem passer det for?</h3>
+                                <ul class="space-y-3 text-sm font-bold text-slate-700">
+                                    <li class="flex gap-2"><span>●</span> Tatt inne til ute-kurs</li>
+                                    <li class="flex gap-2"><span>●</span> Vil bli tryggere på feltet</li>
+                                    <li class="flex gap-2"><span>●</span> Vil utvikle teknikk</li>
+                                    <li class="flex gap-2"><span>●</span> Ønsker en sosial gruppe</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50 p-6 rounded-[30px] border border-slate-100">
+                                <h3 class="font-black uppercase text-xs tracking-widest text-emerald-600 mb-4">Hva lærer du?</h3>
+                                <ul class="space-y-3 text-sm font-bold text-slate-700">
+                                    <li class="flex gap-2"><span>●</span> Klatreteknikk på stein</li>
+                                    <li class="flex gap-2"><span>●</span> Hvordan lese ruter ute</li>
+                                    <li class="flex gap-2"><span>●</span> Trygge rutiner (topptau/led)</li>
+                                    <li class="flex gap-2"><span>●</span> Dynamisk sikringstrening</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-emerald-50 p-8 rounded-[30px] border border-emerald-100">
+                        <h3 class="font-black uppercase text-xs tracking-widest text-emerald-800 mb-2">Praktisk info</h3>
+                        <p class="text-sm text-emerald-900/70 leading-relaxed italic">
+                            Maks 4 deltakere per instruktør sikrer god personlig veiledning. Treningen går i det meste av vær – ved veldig dårlig vær flytter vi økten eller finner alternativ dato.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="lg:sticky lg:top-24">
+                    <div class="bg-slate-900 text-white p-10 rounded-[40px] shadow-2xl relative overflow-hidden">
+                        <div class="relative z-10">
+                            <div class="mb-10">
+                                <p class="text-emerald-400 font-black uppercase tracking-widest text-[10px] mb-2">Pakkepris (4 uker)</p>
+                                <p class="text-5xl font-black italic">3000,-</p>
+                            </div>
+                            
+                            <div class="space-y-6 mb-10 text-sm">
+                                <div class="flex flex-col border-b border-white/10 pb-4">
+                                    <span class="text-slate-400 uppercase text-[10px] font-bold tracking-widest">Varighet</span>
+                                    <span class="font-bold uppercase italic text-emerald-400">4 uker (2,5t per gang)</span>
+                                </div>
+                                <div class="flex flex-col border-b border-white/10 pb-4">
+                                    <span class="text-slate-400 uppercase text-[10px] font-bold tracking-widest">Sted</span>
+                                    <span class="font-bold uppercase italic">Klatrefelt i Oslo-området</span>
+                                </div>
+                                <div class="flex flex-col border-b border-white/10 pb-4">
+                                    <span class="text-slate-400 uppercase text-[10px] font-bold tracking-widest">Krav</span>
+                                    <span class="font-bold uppercase italic">Brattkort + personlig utstyr</span>
+                                </div>
+                            </div>
+
+                            <a href="4d_Påmelding_TreningsgruppeNivå1.html" class="block w-full bg-emerald-600 hover:bg-emerald-500 text-white text-center py-5 rounded-2xl font-black uppercase tracking-widest transition shadow-lg transform hover:-translate-y-1">
+                                Meld deg på her
+                            </a>
+                        </div>
+                        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-2xl"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center border-t border-slate-100">
+        <p class="text-slate-400 text-[10px] font-black uppercase tracking-[0.3em]">© 2026 YYKLATRING</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,823 @@
+<!-- 
+TANKER VIDERE
+- Legge ut nettsiden offentilg
+- Mulighet for å foreslå kursdato
+- Legge inn datoer for prøv klatring ute og inne til ute
+- Legge inn en del om YYKLATRING: hvorfor startet vi, hva slags bedrift osv 
+- Koble til IG, Facebook?
+- Bekkreftelse på påmelding
+- Påmelding skal komme til felles mailadresse (Formspree?)
+    * Kun 50 innsendinger per måned for gratisversjon: https://formspree.io/plans
+
+
+Annet/diverse 
+- Nyhetsbrev 
+ -->
+
+ <!DOCTYPE html>
+ <html lang="no" class="scroll-smooth">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>YYKLATRING | Profesjonelle Klatreopplevelser</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+
+
+     <style>
+
+      
+ /* --- EKSISTERENDE STILER (MODALER OG KORT) --- */
+.modal { 
+    display: none; 
+    position: fixed; 
+    z-index: 100; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.85); 
+    backdrop-filter: blur(5px); 
+}
+
+.modal-content { 
+    background-color: white; 
+    margin: 2% auto; 
+    padding: 40px; 
+    border-radius: 20px; 
+    width: 95%; 
+    max-width: 850px; 
+    max-height: 90vh; 
+    overflow-y: auto; 
+    position: relative; 
+}
+
+.close { 
+    position: sticky; 
+    top: 0; 
+    float: right; 
+    font-size: 30px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    color: #1e293b; 
+    z-index: 10; 
+}
+
+.course-card, .trip-card { 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+
+.course-card:hover { 
+    transform: translateY(-10px); 
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); 
+}
+
+.hero-bg { 
+    background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url('https://images.unsplash.com/photo-1522163182402-834f871fd851?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80'); 
+    background-size: cover; 
+    background-position: center; 
+}
+
+
+/* --- NY OG FORBEDRET DROPDOWN-MENY --- */
+
+/* Selve containeren for menyvalget */
+/* --- NY OG FORBEDRET DROPDOWN-MENY --- */
+.nav-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Den usynlige broen som holder menyen åpen når musa beveger seg ned */
+.nav-dropdown::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 20px; 
+    display: block;
+    z-index: 50;
+}
+
+.nav-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 5px); 
+    background-color: #0f172a; 
+    min-width: 240px;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.4);
+    z-index: 1000;
+    border-radius: 15px;
+    padding: 10px 0;
+    border: 1px solid #1e293b;
+}
+
+.nav-dropdown:hover .nav-dropdown-content,
+.nav-dropdown-content:hover {
+    display: block;
+}
+
+.nav-dropdown-content a {
+    color: #f8fafc;
+    padding: 14px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+}
+
+.nav-dropdown-content a:hover {
+    background-color: #1e293b;
+    color: #10b981; 
+    padding-left: 28px;
+}     
+</style>
+
+
+ </head>
+ 
+ <div class="md:hidden fixed bottom-6 left-0 right-0 px-6 z-40">
+     <button onclick="openCalendar()" class="w-full bg-emerald-600 text-white py-4 rounded-full font-bold shadow-2xl text-center flex justify-center items-center gap-2">
+         Se ledige kurs
+     </button>
+ </div>
+ 
+ 
+ <body class="bg-slate-50 text-slate-900 font-sans">
+ 
+ 
+      <!-- 
+             """"""""""""""""""""""""""""""""""""""""""""""""""
+             " Navgigasjon: Knapper øverst til venstre        "
+             """"""""""""""""""""""""""""""""""""""""""""""""""
+      -->
+ 
+      <nav class="absolute top-0 left-0 w-full text-white p-6 z-50 transition-colors duration-300" id="main-nav">
+        <div class="container mx-auto flex justify-between items-center">
+            
+            <a href="index.html" class="relative z-[110] block">
+                <img src="logo-YYklatring kopi.png" alt="YYKLATRING Logo" class="h-20 md:h-32 w-auto transition-transform hover:scale-105">
+            </a>
+            
+    
+            <div class="hidden md:flex space-x-8 items-center ml-auto text-white">
+                <a href="#hvem-er-vi" class="text-sm font-bold uppercase hover:text-emerald-400">Om oss</a>
+                
+                <div class="nav-dropdown">
+                    <a href="2_Kurs.html" class="text-sm font-bold uppercase hover:text-emerald-400 flex items-center py-4">
+                        Kurs ▾
+                    </a>
+                    <div class="nav-dropdown-content">
+                        <a href="2a_PrøvKlatringUte.html">Prøve klatring ute</a>
+                        <a href="2b_InneTilUtekurs.html">Inne til utekurs</a>
+                        <a href="2c_Repetisjonsdag.html">Repetisjonskurs</a>
+                    </div>
+                </div>
+            
+                <div class="nav-dropdown">
+                    <a href="3_Treningsgrupper.html" class="text-sm font-bold uppercase hover:text-emerald-400 flex items-center py-4">
+                        Treningsgrupper ▾
+                    </a>
+                    <div class="nav-dropdown-content">
+                        <a href="3_Treningsgrupper.html#niva1">Nivå 1</a>
+                        <a href="3_Treningsgrupper.html#niva2">Nivå 2</a>
+                    </div>
+                </div>
+            
+                <a href="4_Påmelding.html" class="bg-emerald-600 px-6 py-2 rounded-full font-black hover:bg-emerald-500 transition">Påmelding</a>
+            </div>
+        </div>
+    </nav>
+    
+    <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&w=800&q=80" alt="Klatring" class="absolute inset-0 w-full h-full object-cover object-[center_20%] z-0">
+        
+        <div class="absolute inset-0 bg-slate-900/40 z-10"></div>
+    
+        <div class="relative z-20 text-center text-white px-4">
+            <h1 class="text-5xl md:text-7xl font-black mb-4 tracking-tighter uppercase italic">
+                Opplev <span class="text-emerald-400">Ekte</span> Klatring
+            </h1>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto font-medium text-slate-100">
+                Bli med oss ut på klippen. Profesjonell instruksjon for alle nivåer.
+            </p>
+        </div>
+    </section>
+ 
+ 
+ 
+ 
+     <!--
+     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+     " Siden du kommer til når du trykker på "kurs" øverst til venstre                      "
+     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+     -->
+     <section id="kurs" class="py-24 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                
+                <a href="2_Kurs.html" class="group relative bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden h-[400px] transition hover:shadow-2xl">
+                    <img src="Maren_NedreSydstup.png" alt="Kurs" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent p-10 flex flex-col justify-end">
+                        <h2 class="text-4xl font-black text-white uppercase tracking-tight">Kurs</h2>
+                        <p class="text-slate-200 mt-2 font-medium">Se alle våre klatrekurs for alle nivåer</p>
+                        <div class="mt-6 inline-flex items-center text-emerald-400 font-bold uppercase text-sm tracking-widest">
+                            Utforsk kurs <span class="ml-2 transition-transform group-hover:translate-x-2">→</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="3_Treningsgrupper.html" class="group relative bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden h-[400px] transition hover:shadow-2xl">
+                    <img src="YY_ElChorro.png" alt="Treningsgrupper" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent p-10 flex flex-col justify-end">
+                        <h2 class="text-4xl font-black text-white uppercase tracking-tight">Treningsgrupper</h2>
+                        <p class="text-slate-200 mt-2 font-medium">Bli med i et sosialt klatrefellesskap</p>
+                        <div class="mt-6 inline-flex items-center text-emerald-400 font-bold uppercase text-sm tracking-widest">
+                            Les mer <span class="ml-2 transition-transform group-hover:translate-x-2">→</span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+ 
+ 
+     <!--Turer i Norge og Utlandet-->
+     <section id="turer" class="py-24 bg-slate-900 text-white overflow-hidden">
+         <div class="container mx-auto px-4">
+             <div class="mb-16 text-center">
+                 <h2 class="text-4xl font-black uppercase tracking-tight">Klatreturer & Eventyr</h2>
+                 <p class="text-emerald-400 font-bold mt-2">Bli med oss på tur – vi fikser logistikken, du klatrer!</p>
+             </div>
+     
+             <!--Klatring i Norge-->
+             <div class="grid md:grid-cols-2 gap-12">
+                 <div class="relative group rounded-3xl overflow-hidden h-[400px]">
+                     <img src="https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&w=800&q=80" alt="Klatring i Norge" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent p-8 flex flex-col justify-end">
+                         <span class="bg-emerald-600 text-[10px] font-black uppercase px-3 py-1 rounded-full w-fit mb-4">1-2 dager</span>
+                         <h3 class="text-3xl font-bold mb-2">Norske Klassikere</h3>
+                         <p class="text-slate-300 mb-6 text-sm">Bli med på 1-2 dagers turer til legendariske klatrefelt i Norge. Vi arrangerer turer til steder som Nissedal, Bohuslän (like over grensen) og Romsdalen.</p>
+                         <button onclick="alert('Kontakt oss for skreddersydde turer i Norge!')" class="bg-white text-slate-900 py-3 px-6 rounded-xl font-bold w-fit hover:bg-emerald-400 transition">Se destinasjoner</button>
+                     </div>
+                 </div>
+     
+                  <!--Klatring i Utlandet-->
+                 <div class="relative group rounded-3xl overflow-hidden h-[400px]">
+                     <img src="Kristoffer_ElChorro.jpg" alt="Klatring i utlandet" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent p-8 flex flex-col justify-end">
+                         <span class="bg-blue-600 text-[10px] font-black uppercase px-3 py-1 rounded-full w-fit mb-4">Utenlandsreiser</span>
+                         <h3 class="text-3xl font-bold mb-2">Klatring i varmere strøk</h3>
+                         <p class="text-slate-300 mb-6 text-sm">Vi tar deg med til klatreparadiser som Kalymnos, Spania eller Italia. Perfekt for deg som vil kombinere ferie, sol og klatring på verdensklasse-stein.</p>
+                         <button onclick="alert('Vi planlegger neste tur til Spania i høst. Send mail for info!')" class="bg-white text-slate-900 py-3 px-6 rounded-xl font-bold w-fit hover:bg-emerald-400 transition">Interessert? Meld deg på</button>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </section>
+
+
+        <!--Tidligere turer-->
+        <section id="galleri-elchorro" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-between items-end mb-6">
+                    <div>
+                        <h2 class="text-3xl font-black uppercase tracking-tight text-slate-800">Minner fra El Chorro Høsten 2024</h2>
+                        <p class="text-emerald-600 font-bold">Bla gjennom våre favorittøyeblikk</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="scrollGallery(-400)" class="bg-slate-100 hover:bg-emerald-100 p-3 rounded-full transition shadow-sm">←</button>
+                        <button onclick="scrollGallery(400)" class="bg-slate-100 hover:bg-emerald-100 p-3 rounded-full transition shadow-sm">→</button>
+                    </div>
+                </div>
+        
+                <div id="image-track" class="flex gap-4 overflow-x-auto scroll-smooth snap-x no-scrollbar pb-6 items-center">
+                    
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                         onclick="openLightbox('Kristoffer_ElChorro.jpg', 'Nydelig utsikt over dalen.')">
+                        <img src="ElChorro2024/1_YSB_7537.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Klatring">
+                    </div>
+        
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                         onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/2_YSB_7529.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                         onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/3_IMG_2584.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>                    
+
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                         onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/4_IMG_4565.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+                    
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                         onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/5_IMG_2562.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+                    
+                    
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                         onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/6_YSB_7549.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+ 
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/7_YSB_7576.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>                    
+
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/8_YSB_7607.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+               
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/9_YSB_7733.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+                    
+                    
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/10_YSB_7742.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+                    
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('Kristoffer_ElChorro.jpg', 'Nydelig utsikt over dalen.')">
+                        <img src="ElChorro2024/11_IMG_4588.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Klatring">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/12_IMG_4591.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/13_YSB_7789.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>                    
+
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/14_YSB_7811.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+          
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/15_YSB_7819.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+          
+          
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/16_IMG_2642.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/17_IMG_2643.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>                    
+
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/18_IMG_2651.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+                    
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/19_IMG_4614.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+                    
+                    
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/20_YSB_7857.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('Kristoffer_ElChorro.jpg', 'Nydelig utsikt over dalen.')">
+                        <img src="ElChorro2024/21_YSB_7910.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Klatring">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/22_IMG_4674.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/23_IMG_4684.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>                    
+
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/24_IMG_2673.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/25_IMG_2674.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+
+
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/26_IMG_2679.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/27_IMG_4707.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>                    
+
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/28_20241116_155451.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/29_IMG_4738.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+
+
+                    <div class="flex-none h-64 md:h-80 snap-start cursor-pointer group"
+                        onclick="openLightbox('YY_ElChorro.png', 'Viktig med lunsjpause!')">
+                        <img src="ElChorro2024/30_IMG_4764.png" class="h-full w-auto rounded-xl shadow-md transition duration-300 group-hover:scale-[1.02] border border-slate-100" alt="Pause">
+                        <p class="text-[10px] text-slate-400 mt-2 italic group-hover:text-emerald-600">Klikk for å se bilde & tekst</p>
+                    </div>
+
+        
+                    </div>
+            </div>
+        </section>
+        
+        <style>
+            .no-scrollbar::-webkit-scrollbar { display: none; }
+            .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        </style>
+ 
+ 
+     <!--
+     """"""""""""""""""""""""""""""""""""""""""""""""""
+     " Siden for "Hvem er vi"                         "
+     """"""""""""""""""""""""""""""""""""""""""""""""""
+     -->
+     <section id="hvem-er-vi" class="py-24 bg-white">
+         <div class="container mx-auto px-4">
+             <div class="text-center mb-16">
+                 <h2 class="text-4xl font-black uppercase tracking-tight text-slate-800">Møt dine instruktører</h2>
+                 <div class="w-24 h-1 bg-emerald-500 mx-auto mt-4"></div>
+             </div>
+             
+             <div class="grid md:grid-cols-2 gap-16 max-w-5xl mx-auto">
+                 <div class="group text-center">
+                     <div class="relative w-64 h-64 mx-auto mb-8">
+                         <div class="absolute inset-0 bg-emerald-500 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform"></div>
+                         <img src="instruktør2_profilbilde.png" alt="Instruktør 1" class="relative inset-0 w-64 h-64 object-cover rounded-2xl shadow-2xl bg-slate-200">
+                     </div>
+                     <h3 class="text-3xl font-bold text-slate-800">Ditt Navn</h3>
+                     <p class="text-emerald-600 font-bold mb-4 uppercase text-sm tracking-widest">Grunnlegger & Instruktør</p>
+                     <p class="text-slate-600 leading-relaxed px-4">
+                         Ylva B er 32 år, har klatret i over 10 år og har en lidenskap for klatring i fjellveggen, teknikk og sikker klatring. Men kanskje viktigst av alt, dele klatrelidenskapen med  å mange som mulig!
+                         Kvalifikasjoner og erfaring: Klatreinstruktør inne, Trener 1, NF klatreinstruktør 1 Sport, kurslærer klatreinstruktør inne.  Jobbet som ute og inne instruktør på Oslo Klatresenter og i Kolsås klatreklubb. 
+                     </p>
+                 </div>
+ 
+                 <div class="group text-center">
+                     <div class="relative w-64 h-64 mx-auto mb-8">
+                         <div class="absolute inset-0 bg-slate-800 rounded-2xl -rotate-6 group-hover:-rotate-12 transition-transform"></div>
+                         <img src="instruktør1_profilbilde.png" alt="Instruktør 2" class="relative inset-0 w-64 h-64 object-cover rounded-2xl shadow-2xl bg-slate-200">
+                     </div>
+                     <h3 class="text-3xl font-bold text-slate-800">Partners Navn</h3>
+                     <p class="text-emerald-600 font-bold mb-4 uppercase text-sm tracking-widest">Partner & Instruktør</p>
+                     <p class="text-slate-600 leading-relaxed px-4">
+                         Ylva M er 21 år og har klatret siden hun var 6 år. Hun driver både med enkeltruter på sport og multipitch på trad. En av hennes største gleder er å se andre oppdage den samme gleden i veggen og mestringsfølelsen som hun selv har.
+                         Kvalifikasjoner og erfaring: Klatreinstruktør inne. Jobber på Vulkan klatresenter, trener for barnegrupper, instruktør på sommerklatrecamp for barn og unge og er en av instruktørene på mandagsklatringen på Skullerud.
+                     </p>
+                 </div>
+             </div>
+         </div>
+     </section>
+ 
+ 
+ 
+     <!--
+     """"""""""""""""""""""""""""""""""""""""""""""""""
+     " Knapper med                                    "
+     "   1. Skriv deg på mail                         "
+     "   2. Kontakt oss                               "
+     "   3. Meld deg på                               "
+     " Når du trykker på et av kursene                "
+     """"""""""""""""""""""""""""""""""""""""""""""""""
+     -->
+     
+ 
+     <section id="kontakt" class="py-24 bg-slate-900 text-white">
+         <div class="container mx-auto px-4 max-w-4xl text-center">
+             <h2 class="text-4xl font-black mb-6 uppercase">Klar for eventyr?</h2>
+             <p class="text-slate-400 mb-12 text-lg">Send oss en melding for spørsmål om kurs, datoer eller gruppebestilling.</p>
+             
+             <div class="grid md:grid-cols-2 gap-8 text-left">
+                 <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
+                     <h4 class="text-xl font-bold mb-4">Kontaktinfo</h4>
+                     <p class="mb-2 text-slate-300">📧 kontakt@yyklatring.no</p>
+                     <p class="mb-2 text-slate-300">📞 +47 000 00 000</p>
+                     <p class="text-slate-300">📍 Oslo / Viken</p>
+                 </div>
+                 <div class="bg-emerald-600 p-8 rounded-2xl">
+                     <h4 class="text-xl font-bold mb-4 text-white">Følg oss</h4>
+                     <p class="text-emerald-100">Vi legger stadig ut bilder fra kurs og klatreturer på sosiale medier!</p>
+                     <div class="mt-4 flex space-x-4">
+                         <span class="font-bold">Instagram</span>
+                         <span class="font-bold">Facebook</span>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </section>
+ 
+ 
+ 
+     <div id="calendarModal" class="modal">
+        <div class="modal-content max-w-2xl">
+            <span onclick="closeCalendar()" class="close">&times;</span>
+            <h2 class="text-3xl font-black mb-6 uppercase tracking-tight text-slate-800">Kurskalender 2026</h2>
+            
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-emerald-600 font-bold uppercase text-sm mb-3 border-b pb-1">Repetisjonsdager</h3>
+                    <div class="grid grid-cols-1 gap-2">
+                        <div onclick="bookDate('repetisjon', '18-19. April')" class="flex items-center p-3 bg-slate-50 rounded-xl border-l-4 border-emerald-500 justify-between cursor-pointer hover:bg-emerald-100 transition">
+                            <div>
+                                <span class="font-bold text-slate-800">18-19. April</span>
+                                <p class="text-[10px] text-slate-500 uppercase font-bold">Maks 8 deltakere</p>
+                            </div>
+                            <span class="text-xs bg-white px-3 py-1 rounded shadow-sm font-bold">Velg →</span>
+                        </div>
+                        <div onclick="bookDate('repetisjon', '25-26. April')" class="flex items-center p-3 bg-slate-50 rounded-xl border-l-4 border-emerald-500 justify-between cursor-pointer hover:bg-emerald-100 transition">
+                            <div>
+                                <span class="font-bold text-slate-800">25-26. April</span>
+                                <p class="text-[10px] text-slate-500 uppercase font-bold">Maks 6 deltakere</p>
+                            </div>
+                            <span class="text-xs bg-white px-3 py-1 rounded shadow-sm font-bold">Velg →</span>
+                        </div>
+                        <div onclick="bookDate('repetisjon', '30-31. Mai')" class="flex items-center p-3 bg-slate-50 rounded-xl border-l-4 border-emerald-500 justify-between cursor-pointer hover:bg-emerald-100 transition">
+                            <div>
+                                <span class="font-bold text-slate-800">30-31. Mai</span>
+                                <p class="text-[10px] text-slate-500 uppercase font-bold">Maks 6 deltakere</p>
+                            </div>
+                            <span class="text-xs bg-white px-3 py-1 rounded shadow-sm font-bold">Velg →</span>
+                        </div>
+                        <div onclick="bookDate('repetisjon', '20-21. Juni')" class="flex items-center p-3 bg-slate-50 rounded-xl border-l-4 border-emerald-500 justify-between cursor-pointer hover:bg-emerald-100 transition">
+                            <div>
+                                <span class="font-bold text-slate-800">20-21. Juni</span>
+                                <p class="text-[10px] text-slate-500 uppercase font-bold">Maks 6 deltakere</p>
+                            </div>
+                            <span class="text-xs bg-white px-3 py-1 rounded shadow-sm font-bold">Velg →</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div>
+                    <h3 class="text-blue-600 font-bold uppercase text-sm mb-3 border-b pb-1">Helgeturer (Norske Klassikere)</h3>
+                    <div class="grid grid-cols-1 gap-2">
+                        <div onclick="bookDate('norske-klassikere', '01-03. Mai')" class="flex items-center p-3 bg-slate-50 rounded-xl border-l-4 border-blue-500 justify-between cursor-pointer hover:bg-blue-100 transition">
+                            <div>
+                                <span class="font-bold text-slate-800">01-03. Mai</span>
+                                <p class="text-[10px] text-slate-500 uppercase font-bold">Maks 8 deltakere</p>
+                            </div>
+                            <span class="text-xs bg-white px-3 py-1 rounded shadow-sm font-bold">Velg →</span>
+                        </div>
+                        <div onclick="bookDate('norske-klassikere', '22-24. Mai')" class="flex items-center p-3 bg-slate-50 rounded-xl border-l-4 border-blue-500 justify-between cursor-pointer hover:bg-blue-100 transition">
+                            <div>
+                                <span class="font-bold text-slate-800">22-24. Mai</span>
+                                <p class="text-[10px] text-slate-500 uppercase font-bold">Maks 6 deltakere</p>
+                            </div>
+                            <span class="text-xs bg-white px-3 py-1 rounded shadow-sm font-bold">Velg →</span>
+                        </div>
+                        <div onclick="bookDate('norske-klassikere', '05-07. Juni')" class="flex items-center p-3 bg-slate-50 rounded-xl border-l-4 border-blue-500 justify-between cursor-pointer hover:bg-blue-100 transition">
+                            <div>
+                                <span class="font-bold text-slate-800">05-07. Juni</span>
+                                <p class="text-[10px] text-slate-500 uppercase font-bold">Maks 6 deltakere</p>
+                            </div>
+                            <span class="text-xs bg-white px-3 py-1 rounded shadow-sm font-bold">Velg →</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div>
+                    <h3 class="text-purple-600 font-bold uppercase text-sm mb-3 border-b pb-1">Treningsgrupper (Maks 4 pers)</h3>
+                    <div class="grid grid-cols-1 gap-3">
+                        <div onclick="bookDate('treningsgruppe', 'Tirsdager (Apr/Mai)')" class="p-3 bg-slate-50 rounded-xl border-l-4 border-purple-500 cursor-pointer hover:bg-purple-100 transition">
+                            <p class="font-bold text-slate-800">Tirsdager:</p>
+                            <p class="text-slate-600 text-sm">28. apr, 05. mai, 12. mai, 19. mai</p>
+                        </div>
+                        <div onclick="bookDate('treningsgruppe', 'Onsdager (Apr/Mai)')" class="p-3 bg-slate-50 rounded-xl border-l-4 border-purple-500 cursor-pointer hover:bg-purple-100 transition">
+                            <p class="font-bold text-slate-800">Onsdager:</p>
+                            <p class="text-slate-600 text-sm">29. apr, 06. mai, 13. mai, 20. mai</p>
+                        </div>
+                        <div onclick="bookDate('treningsgruppe', 'Onsdager (Juni)')" class="p-3 bg-slate-50 rounded-xl border-l-4 border-purple-500 cursor-pointer hover:bg-purple-100 transition">
+                            <p class="font-bold text-slate-800">Onsdager:</p>
+                            <p class="text-slate-600 text-sm">03. juni, 10. juni, 17. juni, 24. juni</p>
+                        </div>
+                        <div onclick="bookDate('treningsgruppe', 'Torsdager (Juni)')" class="p-3 bg-slate-50 rounded-xl border-l-4 border-purple-500 cursor-pointer hover:bg-purple-100 transition">
+                            <p class="font-bold text-slate-800">Torsdager:</p>
+                            <p class="text-slate-600 text-sm">05. juni, 11. juni, 18. juni, 25. juni</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="mt-10 p-6 bg-slate-100 rounded-2xl border border-slate-200 text-center">
+                    <p class="text-lg font-bold text-slate-800 mb-2">Finner du ikke en dato som passer?</p>
+                    <p class="text-slate-600 mb-4">Kontakt oss for påmelding til spesifikke datoer eller skreddersydde opplegg:</p>
+                    <a href="mailto:kontakt@yyklatring.no" class="text-xl md:text-2xl font-black text-emerald-600 hover:text-emerald-500 transition flex items-center justify-center gap-2">
+                        <span>📧</span> kontakt@yyklatring.no
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+
+     <script>
+         function openCalendar() {
+             document.getElementById('calendarModal').style.display = "block";
+             document.body.style.overflow = "hidden";
+         }
+ 
+         function closeCalendar() {
+             document.getElementById('calendarModal').style.display = "none";
+             document.body.style.overflow = "auto";
+         }
+ 
+         // Oppdater window.onclick så den lukker kalenderen også
+         window.onclick = function(event) {
+             if (event.target == document.getElementById('courseModal')) {
+                 closeModal();
+             }
+             if (event.target == document.getElementById('calendarModal')) {
+                 closeCalendar();
+             }
+         }
+
+     </script>
+ 
+      <!--
+     """"""""""""""""""""""""""""""""""""""""""""""""""
+     " Påmelding                                      "
+     """"""""""""""""""""""""""""""""""""""""""""""""""
+     -->
+ 
+     
+ 
+ 
+     <!-- Bekreftelse på at booking er fullført-->
+     <div id="successModal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+         <div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm p-8 text-center transition-all">
+             <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">
+                 ✓
+             </div>
+             <h3 class="text-2xl font-black text-slate-800 mb-2 uppercase tracking-tight">Takk for påmelding!</h3>
+             <p class="text-slate-600 mb-8">Vi har mottatt din forespørsel og sender deg en bekreftelse på e-post fortløpende.</p>
+             <button onclick="closeSuccess()" class="w-full bg-slate-900 text-white py-4 rounded-xl font-bold hover:bg-emerald-600 transition shadow-lg">
+                 Lukk
+             </button>
+         </div>
+     </div>
+ 
+ 
+     <script>
+         // Variabel for å huske hvilket kurs vi ser på akkurat nå
+         let aktivtKursId = "";
+ 
+         // 1. Funksjon for å åpne kursets INFOBOKS
+         const originalOpenModal = openModal;
+         openModal = function(id) {
+             aktivtKursId = id; 
+             originalOpenModal(id);
+         };
+ 
+         // 2. Funksjon for å åpne selve PÅMELDINGSSKJEMAET
+         function openSkjema() {
+             const skjema = document.getElementById('registrationModal');
+             const tittel = document.getElementById('skjemaTittel');
+             const inputFelt = document.getElementById('courseType');
+ 
+             const kursNavn = {
+                 'proevUte': 'Prøv klatring ute',
+                 'inneTilUte': 'Inne til utekurs',
+                 'repetisjon': 'Repetisjonsdag',
+                 'norske-klassikere': 'Norske Klassikere',
+                 'treningsgruppe': 'Treningsgruppe Nivå 1' // Legg til denne linjen
+             };
+ 
+             tittel.innerText = "Påmelding: " + (kursNavn[aktivtKursId] || "Kurs");
+             inputFelt.value = aktivtKursId;
+             
+             skjema.classList.remove('hidden');
+             closeModal();
+             document.body.style.overflow = 'hidden';
+         }
+ 
+         // 3. Funksjon for å lukke skjemaet
+         function closeSkjema() {
+             document.getElementById('registrationModal').classList.add('hidden');
+             document.body.style.overflow = 'auto';
+             // Tøm dato når vi lukker så det ikke henger igjen til neste gang
+             document.getElementById('selectedDateInput').value = "";
+         }
+ 
+         // 4. Funksjon for å koble kalender til påmelding
+         function bookDate(courseId, date) {
+             aktivtKursId = courseId;
+             
+             // Sett inn datoen i skjemaet FØR vi åpner det
+             const display = document.getElementById('dateSelectionDisplay');
+             const text = document.getElementById('selectedDateText');
+             const input = document.getElementById('selectedDateInput');
+             
+             if (display && text && input) {
+                 display.classList.remove('hidden');
+                 text.innerText = date;
+                 input.value = date;
+             }
+             
+             openSkjema();
+             closeCalendar();
+         }
+ 
+ 
+         // Håndter innsending av skjema
+         document.getElementById('enrollmentForm').addEventListener('submit', function(e) {
+             e.preventDefault(); // Hindrer at siden laster på nytt
+ 
+             // Her kan du senere koble på Formspree for å få e-post
+             
+             // Vis suksess-melding
+             closeSkjema(); // Lukker påmeldingsskjemaet
+             document.getElementById('successModal').classList.remove('hidden');
+         });
+ 
+         // Funksjon for å lukke suksess-modalen
+         function closeSuccess() {
+             document.getElementById('successModal').classList.add('hidden');
+             document.body.style.overflow = 'auto'; // Åpner for scrolling igjen
+         }
+ 
+         // 5. Klikk utenfor for å lukke alle modaler
+         window.onclick = function(event) {
+             const infoModal = document.getElementById('courseModal');
+             const kalenderModal = document.getElementById('calendarModal');
+             const regModal = document.getElementById('registrationModal');
+             const successModal = document.getElementById('successModal');
+ 
+             if (event.target == infoModal) closeModal();
+             if (event.target == kalenderModal) closeCalendar();
+             if (event.target == regModal) closeSkjema();
+             if (event.target == successModal) closeSuccess();
+         }
+     </script>
+ 
+ 
+ </body>
+ </html>
+ 
+ 
+ 

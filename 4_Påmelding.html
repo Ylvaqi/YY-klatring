@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="no" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Påmelding | YYKLATRING</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* --- DROPDOWN MENY --- */
+        .nav-dropdown { position: relative; display: inline-block; }
+        .nav-dropdown::after {
+            content: ''; position: absolute; top: 100%; left: 0;
+            width: 100%; height: 20px; display: block; z-index: 50;
+        }
+        .nav-dropdown-content {
+            display: none; position: absolute; right: 0; top: calc(100% + 5px);
+            background-color: #0f172a; min-width: 240px;
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.4); z-index: 1000;
+            border-radius: 15px; padding: 10px 0; border: 1px solid #1e293b;
+        }
+        .nav-dropdown:hover .nav-dropdown-content { display: block; }
+        .nav-dropdown-content a {
+            color: #f8fafc; padding: 14px 20px; text-decoration: none;
+            display: block; font-size: 13px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.2s ease;
+        }
+        .nav-dropdown-content a:hover {
+            background-color: #1e293b; color: #10b981; padding-left: 28px;
+        }     
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-white/10 p-4">
+        <div class="container mx-auto flex items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center font-black text-white italic shadow-lg shadow-emerald-500/20">YY</div>
+                <span class="font-black text-xl tracking-tighter text-white uppercase">YY<span class="text-emerald-400">KLATRING</span></span>
+            </a>
+            <div class="hidden md:flex space-x-8 items-center ml-auto text-white">
+                <a href="index.html" class="text-sm font-bold uppercase tracking-widest hover:text-emerald-400 transition">Om oss</a>
+              
+                <div class="nav-dropdown">
+                    <a href="2_Kurs.html" class="text-sm font-bold uppercase tracking-widest hover:text-emerald-400 transition py-4 inline-block">Kurs ▾</a>
+                    <div class="nav-dropdown-content">
+                        <a href="2a_PrøvKlatringUte.html">Prøve klatring ute</a>
+                        <a href="2b_InneTilUtekurs.html">Inne til utekurs</a>
+                        <a href="2c_Repetisjonsdag.html">Repetisjonsdag</a>
+                    </div>
+                </div>
+                
+                <a href="3_Treningsgrupper.html" class="text-sm font-bold uppercase tracking-widest hover:text-emerald-400 transition">Trening</a>
+                <a href="4_Påmelding.html" class="bg-emerald-600 px-6 py-3 rounded-full text-sm font-black uppercase tracking-widest text-white shadow-lg">Påmelding</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-20">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <header class="text-center mb-16">
+                <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tight mb-4 text-slate-900">
+                    Hva vil du <span class="text-emerald-500 italic">oppleve?</span>
+                </h1>
+                <p class="text-slate-500 font-bold uppercase tracking-widest text-sm">Velg kurs eller treningsgruppe for å se datoer</p>
+            </header>
+            
+            <div class="mb-20">
+                <h3 class="text-xl font-black uppercase mb-8 border-l-4 border-emerald-500 pl-4 tracking-widest">Klatrekurs</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-[30px] shadow-sm border border-slate-200 flex flex-col hover:shadow-xl transition duration-300">
+                        <h2 class="text-xl font-bold mb-4">Prøv klatring ute</h2>
+                        <p class="text-slate-500 text-sm mb-8 flex-grow leading-relaxed">En perfekt introduksjon til klippeklatring. Passer for alle nivåer.</p>
+                        <a href="4a_Påmelding_PrøvKlatringUte.html" class="block text-center bg-slate-900 text-white py-4 rounded-2xl font-bold uppercase tracking-widest text-xs hover:bg-emerald-600 transition">Velg dato</a>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-[30px] shadow-sm border border-slate-200 flex flex-col hover:shadow-xl transition duration-300">
+                        <h2 class="text-xl font-bold mb-4">Inne til utekurs</h2>
+                        <p class="text-slate-500 text-sm mb-8 flex-grow leading-relaxed">Bli en trygg uteklatrer. Vi lærer deg alt om utstyr, rutiner og sikkerhet.</p>
+                        <a href="4b_Påmelding_InneTilUtekurs.html" class="block text-center bg-slate-900 text-white py-4 rounded-2xl font-bold uppercase tracking-widest text-xs hover:bg-emerald-600 transition">Velg dato</a>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-[30px] shadow-sm border border-slate-200 flex flex-col hover:shadow-xl transition duration-300">
+                        <h2 class="text-xl font-bold mb-4">Repetisjonsdag</h2>
+                        <p class="text-slate-500 text-sm mb-8 flex-grow leading-relaxed">For deg som har klatret før, men trenger å friske opp rutinene.</p>
+                        <a href="4c_Påmelding_Repetisjonsdag.html" class="block text-center bg-slate-900 text-white py-4 rounded-2xl font-bold uppercase tracking-widest text-xs hover:bg-emerald-600 transition">Velg dato</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-20">
+                <h3 class="text-xl font-black uppercase mb-8 border-l-4 border-blue-500 pl-4 tracking-widest">Treningsgrupper</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-[30px] shadow-sm border border-slate-200 flex flex-col hover:shadow-xl transition duration-300">
+                        <div class="flex justify-between items-start mb-4">
+                            <h2 class="text-xl font-bold">Treningsgruppe Nivå 1</h2>
+                            <span class="bg-emerald-100 text-emerald-700 text-[10px] font-black px-2 py-1 rounded">NYHET</span>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-8 flex-grow leading-relaxed">Bli trygg på klippen over 4 uker sammen med en fast gruppe.</p>
+                        <a href="4d_Påmelding_TreningsgruppeNivå1.html" class="block text-center bg-blue-600 text-white py-4 rounded-2xl font-bold uppercase tracking-widest text-xs hover:bg-blue-700 transition shadow-md">Meld deg på</a>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-[30px] shadow-sm border border-slate-200 flex flex-col hover:shadow-xl transition duration-300">
+                        <h2 class="text-xl font-bold mb-4">Treningsgruppe Nivå 2</h2>
+                        <p class="text-slate-500 text-sm mb-8 flex-grow leading-relaxed">Viderekommen teknikk og mental trening for deg som vil klatre hardere.</p>
+                        <a href="4e_Påmelding_TreningsgruppeNivå2.html" class="block text-center bg-blue-600 text-white py-4 rounded-2xl font-bold uppercase tracking-widest text-xs hover:bg-blue-700 transition shadow-md">Meld deg på</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 text-white p-10 md:p-16 rounded-[50px] text-center shadow-2xl relative overflow-hidden">
+                <div class="relative z-10">
+                    <h3 class="text-3xl font-black uppercase mb-4 italic text-emerald-400">Skreddersydd kurs?</h3>
+                    <p class="text-slate-400 mb-10 max-w-2xl mx-auto font-medium">Vi setter ofte opp kurs på forespørsel for vennegjenger, bedrifter eller utdrikningslag. Send oss en melding med dine ønsker!</p>
+                    <a href="mailto:kontakt@yyklatring.no" class="inline-block bg-white text-slate-900 px-10 py-4 rounded-full font-black uppercase tracking-widest hover:bg-emerald-500 hover:text-white transition transform hover:-translate-y-1">Send oss en e-post</a>
+                </div>
+                <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-emerald-600/20 rounded-full blur-3xl"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-white py-12 text-center border-t border-white/5">
+        <p class="text-slate-500 text-[10px] font-black uppercase tracking-[0.3em]">© 2026 YYKLATRING</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Påmelding: Repetisjonsdag | YYKLATRING</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* --- DROPDOWN MENY --- */
+        .nav-dropdown { position: relative; display: inline-block; }
+        .nav-dropdown::after {
+            content: ''; position: absolute; top: 100%; left: 0;
+            width: 100%; height: 20px; display: block; z-index: 50;
+        }
+        .nav-dropdown-content {
+            display: none; position: absolute; right: 0; top: calc(100% + 5px);
+            background-color: #0f172a; min-width: 240px;
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.4); z-index: 1000;
+            border-radius: 15px; padding: 10px 0; border: 1px solid #1e293b;
+        }
+        .nav-dropdown:hover .nav-dropdown-content { display: block; }
+        .nav-dropdown-content a {
+            color: #f8fafc; padding: 14px 20px; text-decoration: none;
+            display: block; font-size: 13px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.2s ease;
+        }
+        .nav-dropdown-content a:hover {
+            background-color: #1e293b; color: #10b981; padding-left: 28px;
+        }     
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-white/10 p-4">
+        <div class="container mx-auto flex items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center font-black text-white italic shadow-lg shadow-emerald-500/20">YY</div>
+                <span class="font-black text-xl tracking-tighter text-white uppercase">YY<span class="text-emerald-400">KLATRING</span></span>
+            </a>
+            <div class="hidden md:flex space-x-8 items-center ml-auto text-white">
+                <a href="index.html" class="text-sm font-bold uppercase tracking-widest hover:text-emerald-400 transition">Om oss</a>
+              
+                <div class="nav-dropdown">
+                    <a href="2_Kurs.html" class="text-sm font-bold uppercase tracking-widest hover:text-emerald-400 transition py-4 inline-block">Kurs ▾</a>
+                    <div class="nav-dropdown-content">
+                        <a href="2a_PrøvKlatringUte.html">Prøve klatring ute</a>
+                        <a href="2b_InneTilUtekurs.html">Inne til utekurs</a>
+                        <a href="2c_Repetisjonsdag.html">Repetisjonsdag</a>
+                    </div>
+                </div>
+                
+                <a href="3_Treningsgrupper.html" class="text-sm font-bold uppercase tracking-widest hover:text-emerald-400 transition">Trening</a>
+                <a href="4_Påmelding.html" class="bg-emerald-600 hover:bg-emerald-500 px-6 py-3 rounded-full text-sm font-black uppercase tracking-widest text-white shadow-lg">Påmelding</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-20">
+        <div class="container mx-auto px-4 max-w-2xl">
+            <a href="2c_Repetisjonsdag.html" class="inline-flex items-center gap-2 text-slate-400 font-bold text-xs uppercase tracking-widest hover:text-emerald-500 transition mb-8">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Tilbake til kursinfo
+            </a>
+
+            <div class="bg-white rounded-[40px] shadow-2xl border border-slate-100 p-8 md:p-12">
+                <div class="mb-10">
+                    <h1 class="text-3xl font-black uppercase mb-2">Påmelding</h1>
+                    <p class="text-emerald-600 font-bold uppercase tracking-[0.15em] text-xs">Repetisjonsdag (1600,-)</p>
+                </div>
+
+                <form action="https://formsubmit.co/DIN-EPOST@gmail.com" method="POST" class="space-y-6">
+                    <input type="hidden" name="Kurs" value="Repetisjonsdag">
+                    <input type="hidden" name="_subject" value="Ny påmelding: Repetisjonsdag">
+
+                    <div>
+                        <label class="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 ml-1">Velg Dato (Vår 2026)</label>
+                        <select name="Dato" required class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-200 outline-none focus:ring-2 focus:ring-emerald-500 transition appearance-none cursor-pointer">
+                            <option value="" disabled selected>Velg ønsket dato...</option>
+                            <option value="18-19-april">18-19. April (Maks 8 deltakere)</option>
+                            <option value="25-26-april">25-26. April (Maks 6 deltakere)</option>
+                            <option value="30-31-mai">30-31. Mai (Maks 6 deltakere)</option>
+                            <option value="20-21-juni">20-21. Juni (Maks 6 deltakere)</option>
+                        </select>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 ml-1">Fullt navn</label>
+                            <input type="text" name="Navn" placeholder="Navn Navnesen" required 
+                                   class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-200 outline-none focus:ring-2 focus:ring-emerald-500 transition">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 ml-1">E-post</label>
+                            <input type="email" name="Epost" placeholder="din@epost.no" required 
+                                   class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-200 outline-none focus:ring-2 focus:ring-emerald-500 transition">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 ml-1">Eventuell erfaring/spørsmål</label>
+                        <textarea name="Melding" rows="3" placeholder="Skriv gjerne litt om når du klatret sist..." 
+                                  class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-200 outline-none focus:ring-2 focus:ring-emerald-500 transition resize-none"></textarea>
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit" class="w-full bg-slate-900 text-white py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-emerald-600 transition shadow-xl transform hover:-translate-y-1">
+                            Send påmelding
+                        </button>
+                    </div>
+                </form>
+
+                <p class="mt-8 text-center text-[10px] text-slate-400 uppercase tracking-widest leading-relaxed">
+                    Vi sender deg en bekreftelse og faktura <br> så snart vi har behandlet din påmelding.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center">
+        <p class="text-slate-400 text-[10px] font-black uppercase tracking-[0.3em]">© 2026 YYKLATRING</p>
+    </footer>
+
+</body>
+</html>

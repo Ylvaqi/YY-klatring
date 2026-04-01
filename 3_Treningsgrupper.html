@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="no" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treningsgrupper | YYKLATRING</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* --- DROPDOWN-MENY --- */
+        .nav-dropdown { position: relative; display: inline-block; }
+        .nav-dropdown::after {
+            content: ''; position: absolute; top: 100%; left: 0;
+            width: 100%; height: 20px; display: block; z-index: 50;
+        }
+        .nav-dropdown-content {
+            display: none; position: absolute; right: 0; top: calc(100% + 5px); 
+            background-color: #0f172a; min-width: 240px;
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.4); z-index: 1000;
+            border-radius: 15px; padding: 10px 0; border: 1px solid #1e293b;
+        }
+        .nav-dropdown:hover .nav-dropdown-content { display: block; }
+        .nav-dropdown-content a {
+            color: #f8fafc; padding: 14px 20px; text-decoration: none;
+            display: block; font-size: 13px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.2s ease;
+        }
+        .nav-dropdown-content a:hover {
+            background-color: #1e293b; color: #10b981; padding-left: 28px;
+        }
+
+        .group-card { transition: all 0.3s ease; }
+        .group-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-white/10 p-4">
+        <div class="container mx-auto flex items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center font-black text-white italic shadow-lg shadow-emerald-500/20">YY</div>
+                <span class="font-black text-xl tracking-tighter text-white uppercase">YY<span class="text-emerald-400">KLATRING</span></span>
+            </a>
+            <div class="hidden md:flex space-x-8 items-center ml-auto text-white">
+                <a href="index.html" class="text-sm font-bold uppercase tracking-widest hover:text-emerald-400 transition">Om oss</a>
+                
+                <div class="nav-dropdown">
+                    <a href="2_Kurs.html" class="text-sm font-bold uppercase tracking-widest hover:text-emerald-400 transition py-4 inline-block">
+                        Kurs ▾
+                    </a>
+                    <div class="nav-dropdown-content">
+                        <a href="2a_PrøvKlatringUte.html">Prøve klatring ute</a>
+                        <a href="2b_InneTilUtekurs.html">Inne til utekurs</a>
+                        <a href="2c_Repetisjonsdag.html">Repetisjonskurs</a>
+                    </div>
+                </div>
+
+                <a href="3_Treningsgrupper.html" class="text-sm font-bold uppercase tracking-widest text-emerald-400 transition">Trening</a>
+                <a href="4_Påmelding.html" class="bg-emerald-600 hover:bg-emerald-500 px-6 py-3 rounded-full text-sm font-black uppercase tracking-widest transition shadow-lg text-white">Påmelding</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-16 bg-white border-b border-slate-100">
+        <div class="container mx-auto max-w-5xl px-4 text-center md:text-left">
+            <h1 class="text-5xl md:text-6xl font-black uppercase tracking-tight mb-6 italic text-slate-800">
+                Trenings<span class="text-emerald-500">grupper</span>
+            </h1>
+            <p class="text-xl text-slate-600 leading-relaxed max-w-2xl">
+                Fast oppfølging over tid i et sosialt miljø. Vi flytter treningen ut på klippen så fort sesongen tillater det for optimal progresjon.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-20">
+        <div class="container mx-auto max-w-5xl px-4">
+            <div class="grid md:grid-cols-2 gap-10">
+                
+                <div class="bg-white p-10 rounded-[40px] shadow-sm border border-slate-200 flex flex-col group-card">
+                    <div class="mb-6">
+                        <span class="bg-emerald-100 text-emerald-700 text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full">Nivå 1</span>
+                    </div>
+                    <h2 class="text-3xl font-black uppercase mb-4 leading-tight italic">Bli trygg på klippen</h2>
+                    <p class="text-slate-600 mb-8 flex-grow">
+                        For deg som har tatt kurs, men vil ha veiledning og mengdetrening for å bli 100% selvstendig ute.
+                    </p>
+                    <ul class="space-y-4 mb-10 text-sm font-bold text-slate-500">
+                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div> 4 ukers varighet (faste dager)</li>
+                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div> Fokus på trygge rutiner ute</li>
+                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div> Maks 4 deltakere per instruktør</li>
+                    </ul>
+                    <a href="3a_TreningsgruppeNivå1.html" class="block text-center bg-slate-900 text-white py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-emerald-600 transition shadow-lg">
+                        Info & Påmelding
+                    </a>
+                </div>
+
+                <div class="bg-white p-10 rounded-[40px] shadow-sm border border-slate-200 flex flex-col group-card relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-emerald-500 text-white text-[9px] font-black uppercase tracking-widest px-6 py-2 rotate-45 translate-x-6 translate-y-2">Anbefalt</div>
+                    <div class="mb-6">
+                        <span class="bg-blue-100 text-blue-700 text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full">Nivå 2</span>
+                    </div>
+                    <h2 class="text-3xl font-black uppercase mb-4 leading-tight italic">Viderekommen teknikk</h2>
+                    <p class="text-slate-600 mb-8 flex-grow">
+                        For deg som klatrer led ute og vil pushe gradene. Fokus på klatreteknikk, taktikk og mental trening.
+                    </p>
+                    <ul class="space-y-4 mb-10 text-sm font-bold text-slate-500">
+                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 bg-blue-500 rounded-full"></div> Jobbing med spesifikke prosjekter</li>
+                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 bg-blue-500 rounded-full"></div> Lær flyt og klatretaktikk</li>
+                        <li class="flex items-center gap-3"><div class="w-1.5 h-1.5 bg-blue-500 rounded-full"></div> Brattere vegger og tyngre ruter</li>
+                    </ul>
+                    <a href="3b_TreningsgruppeNivå2.html" class="block text-center bg-slate-900 text-white py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-emerald-600 transition shadow-lg">
+                        Info & Påmelding
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-20">
+        <div class="container mx-auto max-w-5xl px-4">
+            <div class="bg-slate-900 rounded-[50px] p-12 md:p-20 text-white relative shadow-2xl overflow-hidden">
+                <div class="relative z-10">
+                    <h3 class="text-3xl font-black uppercase italic mb-12 text-emerald-400">Hvorfor trene med oss?</h3>
+                    <div class="grid md:grid-cols-3 gap-12 text-center md:text-left">
+                        <div>
+                            <div class="text-emerald-500 text-4xl mb-4 font-black italic">01</div>
+                            <p class="font-bold text-xl mb-3 uppercase tracking-tighter">Kontinuitet</p>
+                            <p class="text-slate-400 text-sm leading-relaxed">Når du klatrer fast med instruktør hver uke, ser vi raskt hvor du kan forbedre deg og gir deg de riktige verktøyene umiddelbart.</p>
+                        </div>
+                        <div>
+                            <div class="text-emerald-500 text-4xl mb-4 font-black italic">02</div>
+                            <p class="font-bold text-xl mb-3 uppercase tracking-tighter">Fellesskap</p>
+                            <p class="text-slate-400 text-sm leading-relaxed">Du blir kjent med andre klatrere på samme nivå. Mange av våre deltakere finner sine faste klatrepartnere her.</p>
+                        </div>
+                        <div>
+                            <div class="text-emerald-500 text-4xl mb-4 font-black italic">03</div>
+                            <p class="font-bold text-xl mb-3 uppercase tracking-tighter">Sikkerhet</p>
+                            <p class="text-slate-400 text-sm leading-relaxed">Alltid profesjonelle instruktører tilstede. Du får øve på fall og sikring under kontrollerte former som bygger selvtillit.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -bottom-24 -right-24 w-80 h-80 bg-emerald-600/10 rounded-full blur-3xl"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center border-t border-slate-100">
+        <p class="text-slate-400 text-[10px] font-black uppercase tracking-[0.3em]">© 2026 YYKLATRING. Alle rettigheter reservert.</p>
+    </footer>
+
+</body>
+</html>
